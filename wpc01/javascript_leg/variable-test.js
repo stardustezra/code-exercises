@@ -12,7 +12,7 @@ function sayHello(users, id) {
     let output = "Hej!"
     const userName = getUserName(users, id) //telefonkø til getUserName
 
-    if (userName !== null) { //tjekker om der er værdig fra getUserName
+    if (userName !== null) { //tjekker om der er værdi fra getUserName
         output = "Hej, " + userName + "!"
     }
     return output
