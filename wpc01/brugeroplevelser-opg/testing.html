@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Opgave 1</title>
+</head>
+<body>
+    <button id="red">Klik for at ændre farve</button>
+    <button id="blue">Klik for at ændre farve</button>
+    <button id="green">Klik for at ændre farve</button>
+    <button id="purple">Klik for at ændre farve</button>
+
+    <ul id="list">
+        <li id="element1">One</li>
+        <li id="element2">Two</li>
+        <li id="element3">Three</li>
+    </ul>
+    <button id="addItem">Add</button>
+    
+    <script>
+        let red = document.getElementById('red').style.backgroundColor = 'red';
+        let blue = document.getElementById('blue').style.backgroundColor = 'blue';
+        let green = document.getElementById('green').style.backgroundColor = 'green';
+        let purple = document.getElementById('purple').style.backgroundColor = 'purple';
+      
+
+        document.getElementById("red").addEventListener ("click", redColorChange); 
+
+        function redColorChange() {
+            document.body.style.backgroundColor = "red";
+            }
+
+        document.getElementById("blue").addEventListener("click", blueColorChange)
+        
+        function blueColorChange() {
+            document.body.style.backgroundColor = "blue";
+        }
+
+        document.getElementById("green").addEventListener("click", greenColorChange)
+
+        function greenColorChange() {
+            document.body.style.backgroundColor = "green"
+        }
+
+        document.getElementById("purple").addEventListener("click", purpleColorChange)
+
+        function purpleColorChange() {
+            document.body.style.backgroundColor = "purple"
+        }
+    
+        const ul = document.getElementById('list'); //finder listen i html
+        //querySelector leder efter det første CSS element med det navn her id'et. 
+        //Adder også eventlistener lytter efter click, e=> betyder event + en fat arrow function som er en
+        //anonym funktion som er den der køre når der klikkes på knappen 
+        document.querySelector('#addItem').addEventListener('click', e => { 
+             ul.append(Object.assign(document.createElement('li'), //laver elementet ved at appende det til sidst i ul 
+              {textContent: 'Four', id: 'element4'}));
+        }, {once: true});
+    
+
+</script>
+
+
+</body>
+</html>
