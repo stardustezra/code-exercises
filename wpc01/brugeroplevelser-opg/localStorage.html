@@ -21,22 +21,65 @@
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {
-  let li = document.createElement("li");
   let inputValue = document.getElementById("myInput").value;
-  let t = document.createTextNode(inputValue);
-  li.appendChild(t);
   if (inputValue === '') {
     alert("You must write something!");
   } else {
-    document.getElementById("myUL").appendChild(li);
+    renderItemElement(inputValue, document.getElementById("myUL"))
+    addItem(inputValue)
   }
   document.getElementById("myInput").value = "";
 } 
-function addItem() {
-    let toDo = localStorage.setItem ('myInput');
-    localStorage.getItem ('myInput', inputValue);
-  newElement();
+
+function renderItemElement(input, parent) {
+  let li = document.createElement("li"); 
+  let t = document.createTextNode(input);
+  li.appendChild(t)
+  parent.appendChild(li);
+
 }
+
+function renderItemElements() {
+  let items = getItems()
+  let i = 0
+  while (i < items.length){
+    renderItemElement(items[i].label, document.getElementById("myUL"))
+    i++
+  }
+
+}
+
+function addItem(input) {
+  let todoItem = {
+    id: Date.now().toString(36) + Math.random().toString(36).substr(2), //laver det til en string, hvis man laver delete skal den finde en specific en
+    label: input,
+    isChecked: false,
+  }
+
+  let items = getItems()
+
+  const itemsWithNewItem = [
+    ...items, //... puts all elements from earlier array
+    todoItem
+  ]
+
+  localStorage.setItem("todoItems", JSON.stringify(itemsWithNewItem))
+}
+
+function getItems() {
+  let items = localStorage.getItem("todoItems");
+  if (!items) {
+    items = [] //if items do not exist it will become empty array
+  }
+  else {
+    items = JSON.parse(items) //if it is there we parse the JSON
+  }
+  return items
+}
+
+renderItemElements()
+
+
 
 
       </script>
