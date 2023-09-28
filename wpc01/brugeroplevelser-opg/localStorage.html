@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage</title>
+</head>
+<body>
+    <div id="myDIV" class="header">
+        <h2>My To Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+      </div>
+      
+      <ul id="myUL">
+        
+        
+      </ul> 
+
+      <script>
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  let li = document.createElement("li");
+  let inputValue = document.getElementById("myInput").value;
+  let t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+} 
+function addItem() {
+    let toDo = localStorage.setItem ('myInput');
+    localStorage.getItem ('myInput', inputValue);
+  newElement();
+}
+
+
+      </script>
+</body>
+</html>
