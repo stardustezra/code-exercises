@@ -10,6 +10,10 @@ const clickButton = () => {
   previousInputs.value.push(textAreaContent.value);
   textAreaContent.value = ""; // Clear the textarea after sending
 };
+
+const removeInput = (index) => {
+  previousInputs.value.splice(index, 1);
+};
 </script>
 
 <template>
@@ -18,7 +22,10 @@ const clickButton = () => {
     <button @click="clickButton">Send</button>
   </div>
   <ul>
-    <li v-for="input in previousInputs" :key="input">{{ input }}</li>
+    <li v-for="(input, index) in previousInputs" :key="index">
+      {{ input }}
+      <button @click="removeInput(index)">Remove</button>
+    </li>
   </ul>
 </template>
 
